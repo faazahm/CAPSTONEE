@@ -1,38 +1,215 @@
-.App {
-  text-align: center;
+/* Reset default margin dan padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Container utama */
+body {
+  background-color: #f9f9f9;
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav-links {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
+}
+
+/* Navbar */
+nav {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center;
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 10px 0;
+  margin-bottom: 5px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a.active {
+  color: #ffa500;
+}
+
+nav a:hover {
+  color: #ffa500;
+}
+
+/* Search bar */
+.search-bar {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.search-bar form {
+  display: flex;
+}
+
+.search-bar input {
+  padding: 8px;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+  width: 200px;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  background-color: #ffa500;
+  color: #fff;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+.search-bar button:hover {
+  background-color: #e59400;
+}
+
+.news-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.page-title {
+  text-align: center; /* Pusatkan teks */
+  margin-bottom: 5px; /* Memberi jarak di bawah elemen */
+  padding-bottom: 5px; /* Memberi jarak antara teks dan garis bawah */
+  font-size: 35px; /* Ukuran font */
+  font-weight: bold;
+  color: #333; /* Warna teks */
+  width: 100%; /* Lebar penuh */
+  grid-column: 1 / -1; /* Membuat judul memanjang di seluruh kolom grid */
+}
+
+.news-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 8px rgba(26, 25, 25, 0.1);
+  text-align: left;
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Efek transisi halus */
+}
+
+.news-card:hover {
+  transform: scale(1.05); /* Zoom sebesar 5% */
+  box-shadow: 0 8px 16px rgba(26, 25, 25, 0.2); /* Tambahkan shadow saat di-hover */
+  cursor: pointer; /* Ubah cursor menjadi pointer */
+}
+
+.news-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.news-placeholder {
+  width: 100%;
+  height: 180px;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+}
+
+.news-content {
+  padding: 15px;
+}
+
+.news-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.news-abstract {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.save-button {
+  background-color: #ff9800;
   color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+.save-button:hover {
+  background-color: #e68900;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Menghapus margin dan padding dari html dan body */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Menghindari scroll horizontal jika ada elemen yang meluap */
+}
+
+/* Reset default margin dan padding untuk semua elemen */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.news-actions {
+  display: flex;
+  justify-content: space-between; /* Jarak antara kedua elemen */
+  align-items: center;
+  margin-top: 10px;
+  gap: 10px; /* Jarak antar tombol */
+}
+
+.read-more {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.read-more:hover {
+  color: rgb(146, 164, 244);
+}
+
+.save-button {
+  background-color: #ff9800;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #e68900;
 }
