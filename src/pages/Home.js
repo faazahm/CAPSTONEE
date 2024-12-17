@@ -8,10 +8,9 @@ const Home = () => {
   const { articles, savedArticles, loading } = useSelector(
     (state) => state.news
   );
-  const { searchTerm } = useParams(); // Ambil parameter URL (keyword)
-
+  const { searchTerm } = useParams();
   useEffect(() => {
-    const query = searchTerm || ""; // Default ke "Indonesia" jika tidak ada keyword
+    const query = searchTerm || "";
     dispatch(fetchNews(query));
   }, [dispatch, searchTerm]);
 
@@ -26,7 +25,6 @@ const Home = () => {
       </h1>
       {articles.map((article) => (
         <div className="news-card" key={article.url}>
-          {/* Tambahkan Gambar */}
           {article.image ? (
             <img
               src={article.image}
@@ -56,7 +54,7 @@ const Home = () => {
                 className="save-button"
               >
                 {savedArticles.some((saved) => saved.url === article.url)
-                  ? "Unsave"
+                  ? "Unsaved"
                   : "Save"}
               </button>
             </div>

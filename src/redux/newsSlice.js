@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Ambil API key dan URL dari environment variables
 const API_KEY = process.env.REACT_APP_API_KEY;
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -13,7 +12,7 @@ export const fetchNews = createAsyncThunk("news/fetchNews", async (query) => {
     url: doc.web_url,
     image: doc.multimedia.length
       ? `https://www.nytimes.com/${doc.multimedia[0].url}`
-      : null, // Ambil gambar pertama jika ada
+      : null,
     saved: false,
   }));
 });

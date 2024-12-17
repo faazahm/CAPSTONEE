@@ -11,7 +11,7 @@ import Programming from "./pages/Programming";
 import Saved from "./pages/Saved";
 import CovidBar from "./components/CovidBar";
 import "./App.css";
-import Indonesia from "./pages/Indonesia"; // Import halaman Indonesia
+import Indonesia from "./pages/Indonesia";
 
 const Search = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -21,7 +21,7 @@ const Search = ({ onSearch }) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
       onSearch(searchTerm);
-      navigate(`/search/${searchTerm}`); // Perbaikan path
+      navigate(`/search/${searchTerm}`);
     }
   };
 
@@ -38,23 +38,35 @@ const Search = ({ onSearch }) => {
   );
 };
 
+const googleFontLink = document.createElement("link");
+googleFontLink.href =
+  "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap";
+googleFontLink.rel = "stylesheet";
+
+document.head.appendChild(googleFontLink);
+
 const App = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   const handleSearch = (term) => {
     setSearchTerm(term);
   };
 
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle("dark-mode");
+  };
+
   const clearSearchTerm = () => {
-    setSearchTerm(""); // Reset searchTerm setiap kali pindah halaman
+    setSearchTerm("");
   };
 
   return (
     <Router>
       <div className="nav-links">
-        {/* Navbar */}
         <nav>
-          <NavLink to="/" onClick={clearSearchTerm}>
+          <NavLink to="/" onClick={clearSearchTerm} className="bold-link">
             DailyLens
           </NavLink>
           <NavLink to="/indonesia" onClick={clearSearchTerm}>
@@ -64,18 +76,21 @@ const App = () => {
             Programming
           </NavLink>
           <NavLink to="/covid" onClick={clearSearchTerm}>
-            COVID-19
+            COVID
           </NavLink>
           <NavLink to="/saved" onClick={clearSearchTerm}>
             Saved
           </NavLink>
-          {/* Komponen Search */}
+
+          <NavLink onClick={toggleDarkMode} className="dark-mode-toggle">
+            {isDarkMode ? "Light Mode" : "Dark Mode"}
+          </NavLink>
+
           <div className="search-bar">
             <Search onSearch={handleSearch} />
           </div>
         </nav>
 
-        {/* Routes */}
         <Routes>
           <Route path="/" element={<Home key="home" />} />
           <Route path="/indonesia" element={<Indonesia key="indonesia" />} />
@@ -85,8 +100,6 @@ const App = () => {
           />
           <Route path="/covid" element={<CovidBar key="covid" />} />
           <Route path="/saved" element={<Saved key="saved" />} />
-
-          {/* Route dinamis untuk pencarian berdasarkan kata kunci */}
           <Route
             path="/search/:searchTerm"
             element={<Home searchTerm={searchTerm} />}

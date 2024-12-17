@@ -22,10 +22,9 @@ const Saved = () => {
           <tbody>
             {savedArticles.map((article) => (
               <tr key={article.url} style={rowStyle}>
-                {/* Source Column */}
                 <td style={cellStyle}>
                   <div>
-                    <strong>{article.source}</strong> {/* Nama sumber */}
+                    <strong>{article.source}</strong>
                   </div>
                   <a
                     href={article.url}
@@ -37,10 +36,8 @@ const Saved = () => {
                   </a>
                 </td>
 
-                {/* Title Column */}
                 <td style={cellStyle}>{article.title}</td>
 
-                {/* Description Column */}
                 <td style={cellStyle}>{article.abstract}</td>
               </tr>
             ))}

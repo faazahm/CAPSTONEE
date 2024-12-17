@@ -8,10 +8,10 @@ const CovidBar = () => {
   const { articles, savedArticles, loading } = useSelector(
     (state) => state.news
   );
-  const { searchTerm } = useParams(); // Ambil parameter URL (keyword)
+  const { searchTerm } = useParams();
 
   useEffect(() => {
-    const query = searchTerm || "Covid"; // Default ke "Indonesia" jika tidak ada keyword
+    const query = searchTerm || "Covid";
     dispatch(fetchNews(query));
   }, [dispatch, searchTerm]);
 
@@ -26,7 +26,6 @@ const CovidBar = () => {
       </h1>
       {articles.map((article) => (
         <div className="news-card" key={article.url}>
-          {/* Tambahkan Gambar */}
           {article.image ? (
             <img
               src={article.image}
@@ -41,23 +40,25 @@ const CovidBar = () => {
           <div className="news-content">
             <h3 className="news-title">{article.title}</h3>
             <p className="news-abstract">{article.abstract}</p>
-            <a
-              href={article.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="read-more"
-            >
-              Read more
-            </a>
-            <br />
-            <button
-              onClick={() => dispatch(toggleSave(article))}
-              className="save-button"
-            >
-              {savedArticles.some((saved) => saved.url === article.url)
-                ? "Unsave"
-                : "Save"}
-            </button>
+            <div className="news-actions">
+              <a
+                href={article.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="read-more"
+              >
+                Read more
+              </a>
+              <br />
+              <button
+                onClick={() => dispatch(toggleSave(article))}
+                className="save-button"
+              >
+                {savedArticles.some((saved) => saved.url === article.url)
+                  ? "Unsaved"
+                  : "Save"}
+              </button>
+            </div>
           </div>
         </div>
       ))}
